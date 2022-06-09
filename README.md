@@ -9,7 +9,7 @@ This script takes in virus capsid and point array PDB files and output creates/o
 with the closest Amino Acid in the capsid to each point in the PA for each chain, along with the distance and Atom at that point, and
 the nearest other AA if there is one within 5 Angstroms.
 
-To run (with capsid '2g33.pdb' and point array 'pa_346.pdb':
+To run (with capsid '2g33.pdb' and point array 'pa_346.pdb' in the same directory as the script):
 
 ```bash
 python find_aas.py 2g33.pdb pa_346.pdb
