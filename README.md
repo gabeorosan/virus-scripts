@@ -5,7 +5,7 @@ College
 
 # find_aas.py
 
-This script takes in virus capsid and point array PDB files and output creates/overwrtes an excel file called test.xlsx
+This script takes in virus capsid and point array PDB files and output creates/overwrtes an excel file called <virusname>.xlsx
 with the closest Amino Acid in the capsid to each point in the PA for each chain, along with the distance and Atom at that point, and
 the nearest other AA if there is one within 5 Angstroms.
 

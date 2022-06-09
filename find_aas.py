@@ -71,11 +71,13 @@ for c in pdb_coords.keys():
 
 from openpyxl import load_workbook
 
-point_df.to_excel('test.xlsx', startrow = 1, index = False)
+
+xl_file = pdb_url.split('/')[-1].split('.')[0] + '.xlsx'
+point_df.to_excel(xl_file, startrow = 1, index = False)
 
 for df in dfs:
-    with pd.ExcelWriter('test.xlsx', engine="openpyxl", mode='a', if_sheet_exists='overlay') as writer:  
-        book = load_workbook('test.xlsx')
+    with pd.ExcelWriter(xl_file, engine="openpyxl", mode='a', if_sheet_exists='overlay') as writer:  
+        book = load_workbook(xl_file)
         writer.sheets = {ws.title: ws for ws in book.worksheets}
         for sheetname in writer.sheets:
             writer.book = book
