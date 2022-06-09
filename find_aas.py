@@ -70,6 +70,7 @@ for c in pdb_coords.keys():
     dfs.append(df)
 
 from openpyxl import load_workbook
+from openpyxl.styles import Alignment
 
 
 xl_file = pdb_url.split('/')[-1].split('.')[0] + '.xlsx'
@@ -86,5 +87,6 @@ for df in dfs:
             mstring = adict[scol+1].upper() + '1' + ':' + adict[scol+4].upper() + '1'
             writer.sheets[sheetname].merge_cells(mstring)
             cstring = adict[scol+1].upper() + '1'
+            writer.sheets[sheetname][cstring].alignment = Alignment(horizontal='center')
             writer.sheets[sheetname][cstring] = 'Chain ' + adict[scol // 4 + 1].upper()
             df.to_excel(writer, startrow = 1, sheet_name=sheetname, startcol=scol, index = False)
