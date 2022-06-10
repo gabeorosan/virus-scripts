@@ -30,12 +30,9 @@ create a venv called 'myenv'
 python -m venv myenv 
 ```
 activate the environment
-
-
-
+```bash
 source myenv/bin/activate
-
-
+```
 and install the requirements
 
 ```bash
