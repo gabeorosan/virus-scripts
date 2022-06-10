@@ -17,6 +17,26 @@ pandas
 numpy
 openpyxl
 
+there is a requirements.txt file so that you can install the requirements in a virtual environment like so:
+
+first download the files or clone the git repo and cd into it
+
+```bash
+git clone https://github.com/gabeorosan/virus-scripts.git && cd virus-scripts
+```
+
+create a venv called 'myenv'
+```bash
+python -m venv myenv 
+```
+
+and install the requirements
+
+```bash
+pip install requirements.txt
+
+```
+
 To run (with capsid '2g33.pdb' and point array 'pa_346.pdb' in the same directory as the script):
 
 ```bash
