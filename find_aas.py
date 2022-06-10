@@ -4,9 +4,6 @@ import numpy as np
 import pandas as pd
 import sys
 
-def argsort(seq):
-    return sorted(range(len(seq)), key=seq.__getitem__)
-
 pdb_url = sys.argv[1]
 pa_url = sys.argv[2]
 
