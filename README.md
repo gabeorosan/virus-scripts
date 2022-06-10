@@ -40,8 +40,10 @@ pip install requirements.txt
 
 ```
 
+# Usage
 To run (with capsid '2g33.pdb' and point array 'pa_346.pdb' in the same directory as the script):
 
 ```bash
 python find_aas.py 2g33.pdb pa_346.pdb
 ```
+
