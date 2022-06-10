@@ -29,6 +29,12 @@ create a venv called 'myenv'
 ```bash
 python -m venv myenv 
 ```
+activate the environment
+
+
+
+source myenv/bin/activate
+
 
 and install the requirements
 
