@@ -34,8 +34,6 @@ with open(pa_url) as pa_file:
         z = float(l[47:54])
         pa_coords.append([x, y, z])
 
-aa_distances = scipy.spatial.distance.cdist(np.array([-1.381, 50.242, 165.299]).reshape((1, 3)), pdb_full)
-
 dfs = []
 point_df = pd.DataFrame({'Point': range(1, len(pa_coords)+1)})
 for c in pdb_coords.keys():
