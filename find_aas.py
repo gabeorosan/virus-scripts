@@ -46,7 +46,7 @@ for c in pdb_coords.keys():
         aa = pdb_aas[ix]
         aa_rn = pdb_lines[ix][23:26]
         atom = pdb_lines[ix][13:16]
-        aa_distances = scipy.spatial.distance.cdist(np.array(pdb_coords[c][ix]).reshape((1, 3)), pdb_full)
+        aa_distances = scipy.spatial.distance.cdist(np.array(pa_coords[i]).reshape((1, 3)), pdb_full)
         d_argsort = np.argsort(aa_distances[0])
         for j in range(len(d_argsort)):
             c_ix = np.where(d_argsort==j)[0][0]
