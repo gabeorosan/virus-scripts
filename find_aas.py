@@ -9,20 +9,22 @@ pa_url = sys.argv[2]
 
 # read pdb file
 with open(pdb_url) as pdb_file:
-    pdb_lines = pdb_file.readlines()
     pdb_coords = {}
-    pdb_aas = []
-    for i in range(len(pdb_lines)):
-        l = pdb_lines[i]
+    pdb_info = {}
+    for l in pdb_file.readlines():
         chain = l[21]
         x = float(l[31:38])
         y = float(l[39:46])
         z = float(l[47:54])
+        aa = l[17:20]
+        aa_rn = l[23:26]
+        atom = l[13:16]
         if chain not in pdb_coords.keys():
             pdb_coords[chain] = []
         pdb_coords[chain].append([x, y, z])
-        pdb_aas.append(l[17:20])
-
+        if chain not in pdb_info.keys():
+            pdb_info[chain] = []
+        pdb_info[chain].append({'aa': aa, 'aa_rn': aa_rn, 'atom': atom})
 #read pa file
 with open(pa_url) as pa_file:
     pa_coords = []
@@ -41,19 +43,18 @@ for c in pdb_coords.keys():
     for i in range(len(min_ixs)):
         ix = min_ixs[i]
         d = distances[ix][i]
-        aa = pdb_aas[ix]
-        aa_rn = pdb_lines[ix][23:26]
-        atom = pdb_lines[ix][13:16]
+        aa = pdb_info[c][ix]['aa']
+        aa_rn = pdb_info[c][ix]['aa_rn']
+        atom = pdb_info[c][ix]['atom']
         if d < 5:
-            aa_distances = scipy.spatial.distance.cdist(np.array(pa_coords[i]).reshape((1, 3)), pdb_coords[c])
-            d_argsort = np.argsort(aa_distances[0])
-            for j in range(len(d_argsort)):
-                c_ix = d_argsort[j]
-                if aa_distances[0][c_ix] > 5:
+            aa_distances = scipy.spatial.distance.cdist(np.array(pa_coords[i]).reshape((1, 3)), pdb_coords[c])[0]
+            d_argsort = np.argsort(aa_distances)
+            for c_ix in d_argsort:
+                if aa_distances[c_ix] > 5:
                     aa_others.append('N/A')
                     break
-                elif pdb_aas[ix] + pdb_lines[ix][23:26] != pdb_aas[c_ix] + pdb_lines[c_ix][23:26]:
-                    aa_other_rn = pdb_aas[c_ix] + pdb_lines[c_ix][23:26]
+                elif aa + aa_rn != pdb_info[c][c_ix]['aa'] + pdb_info[c][c_ix]['aa_rn']:
+                    aa_other_rn = pdb_info[c][c_ix]['aa'] + pdb_info[c][c_ix]['aa_rn']
                     aa_others.append(aa_other_rn)
                     break
         else: aa_others.append('N/A')
