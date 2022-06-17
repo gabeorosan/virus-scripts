@@ -67,21 +67,35 @@ for c in pdb_coords.keys():
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment
 
-
 xl_file = pdb_url.split('/')[-1].split('.')[0] + '.xlsx'
-point_df.to_excel(xl_file, startrow = 1, index = False)
+pa_name=pa_url.split('/')[-1].split('.')[0]
+try:
+    with pd.ExcelWriter(xl_file, engine="openpyxl", mode='a', if_sheet_exists='replace') as writer:
+        point_df.to_excel(writer, startrow=1, sheet_name=pa_name, index = False)
+except Exception as e: 
+    point_df.to_excel(xl_file, sheet_name=pa_name, startrow = 1, index = False)
+    print(e)
+
+def excel_style(col):
+    LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    """ Convert given row and column number to an Excel-style cell name. """
+    result = []
+    while col:
+        col, rem = divmod(col-1, 26)
+        result[:0] = LETTERS[rem]
+    return ''.join(result)
 
 for df in dfs:
     with pd.ExcelWriter(xl_file, engine="openpyxl", mode='a', if_sheet_exists='overlay') as writer:  
         book = load_workbook(xl_file)
         writer.sheets = {ws.title: ws for ws in book.worksheets}
+        writer.book = book
         for sheetname in writer.sheets:
-            writer.book = book
+            if sheetname != pa_name: continue
             scol = writer.sheets[sheetname].max_column
-            adict = {1:'a', 2:'b', 3:'c', 4:'d', 5:'e', 6:'f', 7:'g', 8:'h', 9:'i', 10:'j', 11:'k', 12:'l', 13:'m', 14:'n', 15:'o', 16:'p', 17:'q', 18:'r', 19:'s', 20:'t', 21:'u', 22:'v', 23:'w', 24:'x', 25:'y', 26:'z'} 
-            mstring = adict[scol+1].upper() + '1' + ':' + adict[scol+4].upper() + '1'
+            mstring = excel_style(scol+1) + '1' + ':' + excel_style(scol+4) + '1'
             writer.sheets[sheetname].merge_cells(mstring)
-            cstring = adict[scol+1].upper() + '1'
+            cstring = excel_style(scol+1).upper() + '1'
             writer.sheets[sheetname][cstring].alignment = Alignment(horizontal='center')
-            writer.sheets[sheetname][cstring] = 'Chain ' + adict[scol // 4 + 1].upper()
+            writer.sheets[sheetname][cstring] = 'Chain ' + excel_style(scol // 4 + 1).upper()
             df.to_excel(writer, startrow = 1, sheet_name=sheetname, startcol=scol, index = False)
