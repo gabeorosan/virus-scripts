@@ -47,3 +47,12 @@ To run (with capsid '2g33.pdb' and point array 'pa_346.pdb' in the same director
 python find_aas.py 2g33.pdb pa_346.pdb
 ```
 
+There is also a run_pas.sh shell script to loop through a folder and run the above command for each point array in the folder on
+a capsid (containing "pa" in the file name). To use it, first make the shell script an executable:
+```bash
+chmod +x run_pas.sh
+```
+Then call it (on capsid '2g33.pdb' for PAs in folder pa_directory)
+```
+./run_pas.sh 2g33.pdb pa_directory
+```
