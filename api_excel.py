@@ -84,18 +84,10 @@ eng = matlab.engine.start_matlab()
 for pdbid in pdb_ids:
     try:
         file_url = 'vpa_input/' + pdbid + '.pdb'
-        with open(file_url, 'r') as f:
-            chain_dict = {}
-            lines = f.readlines()
-            for l in lines:
-                c = l[21]
-                if c not in chain_dict.keys():
-                    chain_dict[c] = 1
-                else:
-                    chain_dict[c] = chain_dict[c] + 1
-        clist = [str(cv) for cv in chain_dict.values()]
-        app = ' '.join(clist)
 
+        res = subprocess.check_output(['pdb_info.pl', file_url])
+        app_line = res.decode().split('\n')[-2]
+    
         wb = xw.Book('template.xlsx')
 
         ws1 = wb.sheets['1aym']
@@ -112,9 +104,8 @@ for pdbid in pdb_ids:
         script = "clear all;\n" \
                  "clc;\n" \
                  "close all\n" \
-                 "Tnum = 1;\n" \
-                 "app = [" + app + "];\n" \
-                 "pdbid = '" + pdbid + "';\n"
+                 "" + app_line + ";\n"\
+                 "pdbid = '" + pdbid + "'\n"
 
         with open("loadcapsid.m","w") as f:
             f.write(script)
