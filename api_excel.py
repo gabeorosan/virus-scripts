@@ -1,5 +1,3 @@
-#only using tnum 3 for testing & app (aas per protein) parsing issues
-
 import requests
 import json
 from urllib3.exceptions import InsecureRequestWarning
@@ -28,18 +26,18 @@ tnums_res = requests.get((base_url + all_tnums_url), verify=False)
 tnums = json.loads(tnums_res.text)
 
 tnum_members = {}
-tnum = '3'
-'''
-for tnum in tnums:
-'''
-
-members_res = requests.get(tnum_url(tnum), verify=False)
-tnum_members[tnum] = json.loads(members_res.text)
-
 n_structures = 5
-tnum_lowres = lowres_dictlist(tnum_members, n_structures)
+pdb_ids = []
 
-pdb_ids = [v['entry_id'] for v in tnum_lowres[tnum]]
+for t in tnums:
+    tnum = t['tnumber']
+    members_res = requests.get(tnum_url(tnum), verify=False)
+    tnum_members[tnum] = json.loads(members_res.text)
+
+tnum_lowres = lowres_dictlist(tnum_members, n_structures)
+for tnum in tnum_lowres.keys():
+    for v in tnum_lowres[tnum]:
+        pdb_ids.append(v['entry_id'])
 
 ###loop through ids and get coords
 
