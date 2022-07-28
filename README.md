@@ -65,3 +65,7 @@ Then call it (on capsid '2g33.pdb' for PAs in folder pa_directory)
 ```
 ./run_pas.sh 2g33.pdb pa_directory
 ```
+
+# aa_plot.ipnyb
+
+Jupyter notebook to graph some info from the excel file created by find_aas (Average distance from PA point, closest AA, other AAs)
