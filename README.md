@@ -69,3 +69,8 @@ Then call it (on capsid '2g33.pdb' for PAs in folder pa_directory)
 # aa_plot.ipnyb
 
 Jupyter notebook to graph some info from the excel file created by find_aas (Average distance from PA point, closest AA, other AAs)
+
+# temp_plot.ipnyb
+
+Notebook to graph some info from the SC_frankencode output excel file (frequency of PAs being closest, most common GPs,
+average distance from GPs)
