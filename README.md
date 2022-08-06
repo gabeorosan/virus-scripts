@@ -73,4 +73,7 @@ Jupyter notebook to graph some info from the excel file created by find_aas (Ave
 # temp_plot.ipnyb
 
 Notebook to graph some info from the SC_frankencode output excel file (frequency of PAs being closest, most common GPs,
-average distance from GPs)
+
+# capsid_info.ipnyb
+
+Notebook to use web apis to get various info for a given capsid
