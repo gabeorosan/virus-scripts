@@ -77,3 +77,7 @@ Notebook to graph some info from the SC_frankencode output excel file (frequency
 # capsid_info.ipnyb
 
 Notebook to use web apis to get various info for a given capsid
+
+# family_stats.ipnyb
+
+Notebook to use PDB and ViperDB web api to compile data from viruses in various families and write to families.xlsx
