@@ -81,3 +81,11 @@ Notebook to use web apis to get various info for a given capsid
 # family_stats.ipnyb
 
 Notebook to use PDB and ViperDB web api to compile data from viruses in various families and write to families.xlsx
+
+# family_plot.ipnyb
+
+Notebook to average and graph some data from families.xlsx
+
+#fold_stats.ipnyb
+
+Notebook to get non-t1 viruses from each family and write them to non_t_one.xlsx
