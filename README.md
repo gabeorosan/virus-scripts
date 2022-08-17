@@ -93,4 +93,9 @@ Notebook to get non-t1 viruses from each family (labeled with SCOP ccs) and writ
 # parse_scop.ipnyb
 
 Notebook to get pdb ids from families.xlsx and their folds from scop.txt (using scop-des.txt to get the text description
-for each fold id) and analyze the frequency of folds
+for each fold id) and analyze the frequency of folds. Also created the phrenology_folds.xlsx spreadsheet with data from
+    Dr.Wilson's Viral Phrenology paper and the folds of each virus.
+
+# phrenology_plot.ipynb
+
+Notebook to analyze the gps of viruses with different folds
