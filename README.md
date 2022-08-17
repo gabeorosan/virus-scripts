@@ -12,8 +12,25 @@ the nearest other AA if there is one within 5 Angstroms written to a sheet with 
 
 You can use the single executable file find_aas like so:
 
+Allow it to run as an executable:
+
+```bash
+chmod +x find_aas
+```
+
+then you can call it on a single pa like so:
+
 ```bash
 ./find_aas 2g33.pdb pa_346.pdb
+```
+
+or you can have it loop through a directory of pa files by using the run_pas_exec.sh file
+
+```bash
+chmod +x run_pas_exec.sh
+```
+```bash
+./run_pas_exec.sh 2g33.pdb pa_directory
 ```
 
 This is a compiled executable with pyinstaller. Originally it was a python file which you can run as such with the
