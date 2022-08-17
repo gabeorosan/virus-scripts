@@ -33,7 +33,7 @@ chmod +x run_pas_exec.sh
 ./run_pas_exec.sh 2g33.pdb pa_directory
 ```
 
-This is a compiled executable with pyinstaller. Originally it was a python file which you can run as such with the
+find_aas is a compiled executable with pyinstaller. Originally it was a python file which you can run as such with the
 requirements & usage detailed below (faster).
 
 # Requirements
