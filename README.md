@@ -88,4 +88,9 @@ Notebook to average and graph some data from families.xlsx
 
 # fold_stats.ipnyb
 
-Notebook to get non-t1 viruses from each family and write them to non_t_one.xlsx
+Notebook to get non-t1 viruses from each family (labeled with SCOP ccs) and write them to non_t_one.xlsx
+
+# parse_scop.ipnyb
+
+Notebook to get pdb ids from families.xlsx and their folds from scop.txt (using scop-des.txt to get the text description
+for each fold id) and analyze the frequency of folds
