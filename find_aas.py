@@ -12,9 +12,9 @@ with open(pdb_url) as pdb_file:
     pdb_info = {}
     for l in pdb_file.readlines():
         chain = l[21]
-        x = float(l[31:38])
-        y = float(l[39:46])
-        z = float(l[47:54])
+        x = float(l[30:38])
+        y = float(l[38:46])
+        z = float(l[46:54])
         aa = l[17:20]
         rn = l[23:26]
         atom = l[13:16]
@@ -28,9 +28,9 @@ with open(pdb_url) as pdb_file:
 with open(pa_url) as pa_file:
     pa_coords = []
     for l in pa_file.readlines():
-        x = float(l[31:38])
-        y = float(l[39:46])
-        z = float(l[47:54])
+        x = float(l[30:38])
+        y = float(l[38:46])
+        z = float(l[46:54])
         pa_coords.append([x, y, z])
 
 dfs = []
@@ -77,7 +77,7 @@ def excel_style(col):
     LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     """ Convert given row and column number to an Excel-style cell name. """
     result = []
-    if not col return 'A'
+    if not col: return 'A'
     while col:
         col, rem = divmod(col, 26)
         result[:0] = LETTERS[rem]
@@ -86,8 +86,6 @@ def excel_style(col):
 for df in dfs:
     with pd.ExcelWriter(xl_file, engine="openpyxl", mode='a', if_sheet_exists='overlay') as writer:  
         book = load_workbook(xl_file)
-        writer.sheets = {ws.title: ws for ws in book.worksheets}
-        writer.book = book
         for sheetname in writer.sheets:
             if sheetname != pa_name: continue
             scol = writer.sheets[sheetname].max_column
