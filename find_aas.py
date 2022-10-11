@@ -94,5 +94,5 @@ for df in dfs:
             writer.sheets[sheetname].merge_cells(mstring)
             cstring = excel_style(scol).upper() + '1'
             writer.sheets[sheetname][cstring].alignment = Alignment(horizontal='center')
-            writer.sheets[sheetname][cstring] = 'Chain ' + excel_style(scol // 4 + 1).upper()
+            writer.sheets[sheetname][cstring] = 'Chain ' + excel_style(scol // 4).upper()
             df.to_excel(writer, startrow = 1, sheet_name=sheetname, startcol=scol, index = False)
