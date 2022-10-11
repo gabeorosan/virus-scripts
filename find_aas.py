@@ -77,6 +77,7 @@ def excel_style(col):
     LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     """ Convert given row and column number to an Excel-style cell name. """
     result = []
+    if not col return 'A'
     while col:
         col, rem = divmod(col, 26)
         result[:0] = LETTERS[rem]
