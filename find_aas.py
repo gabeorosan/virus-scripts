@@ -78,9 +78,12 @@ def excel_style(col):
     """ Convert given row and column number to an Excel-style cell name. """
     result = []
     if not col: return 'A'
+    repeat = False
     while col:
         col, rem = divmod(col, 26)
+        if repeat: rem -= 1
         result[:0] = LETTERS[rem]
+        repeat = True
     return ''.join(result)
 
 for df in dfs:
@@ -95,3 +98,5 @@ for df in dfs:
             writer.sheets[sheetname][cstring].alignment = Alignment(horizontal='center')
             writer.sheets[sheetname][cstring] = 'Chain ' + excel_style(scol // 4).upper()
             df.to_excel(writer, startrow = 1, sheet_name=sheetname, startcol=scol, index = False)
+
+
